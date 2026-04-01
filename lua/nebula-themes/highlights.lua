@@ -95,7 +95,7 @@ end
 ---@return table<string, vim.api.keyset.highlight>
 function M.syntax(p)
   return {
-    Comment    = { fg = p.text_muted, italic = true },
+    Comment    = { fg = p.text_muted },
     Constant   = { fg = p.orange },
     String     = { fg = p.green },
     Character  = { fg = p.green },
@@ -109,7 +109,7 @@ function M.syntax(p)
     Repeat     = { fg = p.purple },
     Label      = { fg = p.teal },
     Operator   = { fg = p.text_muted },
-    Keyword    = { fg = p.purple, italic = true },
+    Keyword    = { fg = p.purple },
     Exception  = { fg = p.red },
     PreProc    = { fg = p.pink },
     Include    = { fg = p.purple },
@@ -174,7 +174,7 @@ function M.lsp(p)
     LspReferenceWrite = { bg = p.surface0, bold = true },
     LspCodeLens       = { fg = p.text_muted },
     LspSignatureActiveParameter = { fg = p.brand, bold = true },
-    LspInlayHint = { fg = p.surface2, italic = true },
+    LspInlayHint = { fg = p.surface2 },
   }
 end
 
@@ -185,8 +185,8 @@ function M.treesitter(p)
   return {
     -- ── Identifiers ──────────────────────────────────────────────────
     ["@variable"]            = { fg = p.text },
-    ["@variable.builtin"]    = { fg = p.red, italic = true },
-    ["@variable.parameter"]  = { fg = p.text, italic = true },
+    ["@variable.builtin"]    = { fg = p.red },
+    ["@variable.parameter"]  = { fg = p.text },
     ["@variable.member"]     = { fg = p.teal },
     ["@constant"]            = { fg = p.orange },
     ["@constant.builtin"]    = { fg = p.orange, bold = true },
@@ -208,14 +208,14 @@ function M.treesitter(p)
 
     -- ── Types ────────────────────────────────────────────────────────
     ["@type"]          = { fg = p.yellow },
-    ["@type.builtin"]  = { fg = p.yellow, italic = true },
-    ["@type.qualifier"] = { fg = p.purple, italic = true },
+    ["@type.builtin"]  = { fg = p.yellow },
+    ["@type.qualifier"] = { fg = p.purple },
     ["@attribute"]     = { fg = p.teal },
     ["@property"]      = { fg = p.teal },
 
     -- ── Functions ────────────────────────────────────────────────────
     ["@function"]         = { fg = p.blue },
-    ["@function.builtin"] = { fg = p.blue, italic = true },
+    ["@function.builtin"] = { fg = p.blue },
     ["@function.call"]    = { fg = p.blue },
     ["@function.macro"]   = { fg = p.pink },
     ["@function.method"]  = { fg = p.blue },
@@ -223,15 +223,15 @@ function M.treesitter(p)
     ["@constructor"]      = { fg = p.yellow },
 
     -- ── Keywords ─────────────────────────────────────────────────────
-    ["@keyword"]              = { fg = p.purple, italic = true },
-    ["@keyword.function"]     = { fg = p.purple, italic = true },
+    ["@keyword"]              = { fg = p.purple },
+    ["@keyword.function"]     = { fg = p.purple },
     ["@keyword.operator"]     = { fg = p.purple },
-    ["@keyword.return"]       = { fg = p.purple, italic = true },
+    ["@keyword.return"]       = { fg = p.purple },
     ["@keyword.conditional"]  = { fg = p.purple },
     ["@keyword.repeat"]       = { fg = p.purple },
     ["@keyword.import"]       = { fg = p.purple },
     ["@keyword.exception"]    = { fg = p.red },
-    ["@keyword.modifier"]     = { fg = p.purple, italic = true },
+    ["@keyword.modifier"]     = { fg = p.purple },
 
     -- ── Operators & Punctuation ──────────────────────────────────────
     ["@operator"]               = { fg = p.text_muted },
@@ -240,7 +240,7 @@ function M.treesitter(p)
     ["@punctuation.special"]    = { fg = p.pink },
 
     -- ── Comments & Documentation ─────────────────────────────────────
-    ["@comment"]         = { fg = p.text_muted, italic = true },
+    ["@comment"]         = { fg = p.text_muted },
     ["@comment.todo"]    = { fg = p.bg, bg = p.yellow, bold = true },
     ["@comment.note"]    = { fg = p.bg, bg = p.blue, bold = true },
     ["@comment.warning"] = { fg = p.bg, bg = p.orange, bold = true },
@@ -249,7 +249,7 @@ function M.treesitter(p)
     -- ── Markup ───────────────────────────────────────────────────────
     ["@markup.heading"]   = { fg = p.brand, bold = true },
     ["@markup.strong"]    = { bold = true },
-    ["@markup.italic"]    = { italic = true },
+    ["@markup.italic"]    = {},
     ["@markup.strikethrough"] = { strikethrough = true },
     ["@markup.underline"] = { underline = true },
     ["@markup.link"]      = { fg = p.blue },
@@ -259,7 +259,7 @@ function M.treesitter(p)
 
     -- ── Tags (HTML/JSX) ──────────────────────────────────────────────
     ["@tag"]           = { fg = p.red },
-    ["@tag.attribute"] = { fg = p.yellow, italic = true },
+    ["@tag.attribute"] = { fg = p.yellow },
     ["@tag.delimiter"] = { fg = p.text_muted },
   }
 end

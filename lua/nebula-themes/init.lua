@@ -10,20 +10,12 @@ local M = {}
 ---@field theme string Default theme to load ("nebula" | "serenity-bloom")
 ---@field transparent boolean If true, sets Normal bg to NONE
 ---@field terminal_colors boolean If true, sets terminal ANSI colors
----@field styles table Override italic/bold for syntax groups
-
 --- Default configuration
 ---@type NebulaConfig
 M.config = {
   theme = "nebula",
   transparent = false,
   terminal_colors = true,
-  styles = {
-    comments = { italic = true },
-    keywords = { italic = true },
-    functions = {},
-    variables = {},
-  },
 }
 
 --- Merge user config with defaults
@@ -97,24 +89,6 @@ function M.load(theme)
     vim.api.nvim_set_hl(0, "NormalFloat", { fg = palette.text, bg = "NONE" })
     vim.api.nvim_set_hl(0, "SignColumn", { fg = palette.surface1, bg = "NONE" })
     vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "NONE", bg = "NONE" })
-  end
-
-  -- Apply style overrides
-  if M.config.styles.comments then
-    vim.api.nvim_set_hl(0, "Comment", vim.tbl_extend("force", { fg = palette.text_muted }, M.config.styles.comments))
-    vim.api.nvim_set_hl(0, "@comment", vim.tbl_extend("force", { fg = palette.text_muted }, M.config.styles.comments))
-  end
-  if M.config.styles.keywords then
-    vim.api.nvim_set_hl(0, "Keyword", vim.tbl_extend("force", { fg = palette.purple }, M.config.styles.keywords))
-    vim.api.nvim_set_hl(0, "@keyword", vim.tbl_extend("force", { fg = palette.purple }, M.config.styles.keywords))
-  end
-  if M.config.styles.functions and next(M.config.styles.functions) then
-    vim.api.nvim_set_hl(0, "Function", vim.tbl_extend("force", { fg = palette.blue }, M.config.styles.functions))
-    vim.api.nvim_set_hl(0, "@function", vim.tbl_extend("force", { fg = palette.blue }, M.config.styles.functions))
-  end
-  if M.config.styles.variables and next(M.config.styles.variables) then
-    vim.api.nvim_set_hl(0, "Identifier", vim.tbl_extend("force", { fg = palette.text }, M.config.styles.variables))
-    vim.api.nvim_set_hl(0, "@variable", vim.tbl_extend("force", { fg = palette.text }, M.config.styles.variables))
   end
 
   -- Terminal colors
