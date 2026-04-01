@@ -394,6 +394,81 @@ function M.plugins(p)
     MiniTablineFill     = { bg = p.mantle },
     MiniCursorword      = { bg = p.surface0, bold = true },
     MiniIndentscopeSymbol = { fg = p.surface2 },
+
+    -- ── mini.clue ────────────────────────────────────────────────────
+    MiniClueBorder               = { fg = p.surface2, bg = p.mantle },
+    MiniClueTitle                = { fg = p.brand, bg = p.mantle, bold = true },
+    MiniClueNextKey              = { fg = p.brand },
+    MiniClueNextKeyWithPostkeys  = { fg = p.orange, bold = true },
+    MiniClueDescSingle           = { fg = p.text },
+    MiniClueDescGroup            = { fg = p.blue },
+    MiniClueSeparator            = { fg = p.surface2 },
+
+    -- ── fzf-lua ──────────────────────────────────────────────────────
+    -- Main window
+    FzfLuaNormal        = { fg = p.text, bg = p.mantle },
+    FzfLuaBorder        = { fg = p.surface2, bg = p.mantle },
+    FzfLuaTitle         = { fg = p.brand, bold = true },
+    FzfLuaTitleFlags    = { fg = p.text_muted },
+    FzfLuaBackdrop      = { bg = p.bg },
+    -- Preview window
+    FzfLuaPreviewNormal = { fg = p.text, bg = p.crust },
+    FzfLuaPreviewBorder = { fg = p.surface2, bg = p.crust },
+    FzfLuaPreviewTitle  = { fg = p.green, bold = true },
+    -- Help window
+    FzfLuaHelpNormal    = { fg = p.text, bg = p.mantle },
+    FzfLuaHelpBorder    = { fg = p.surface2, bg = p.mantle },
+    -- Cursor / selection
+    FzfLuaCursor        = { fg = p.bg, bg = p.brand },
+    FzfLuaCursorLine    = { bg = p.surface0 },
+    FzfLuaCursorLineNr  = { fg = p.text_muted, bg = p.surface0 },
+    FzfLuaSearch        = { fg = p.brand, bold = true },
+    -- Scrollbars
+    FzfLuaScrollBorderEmpty = { fg = p.surface1 },
+    FzfLuaScrollBorderFull  = { fg = p.brand },
+    FzfLuaScrollFloatEmpty  = { fg = p.surface1 },
+    FzfLuaScrollFloatFull   = { fg = p.brand },
+    -- Headers / keybind hints
+    FzfLuaHeaderBind    = { fg = p.brand },
+    FzfLuaHeaderText    = { fg = p.blue },
+    -- Path parts
+    FzfLuaPathColNr     = { fg = p.teal },
+    FzfLuaPathLineNr    = { fg = p.green },
+    FzfLuaDirIcon       = { fg = p.blue },
+    FzfLuaDirPart       = { fg = p.text_muted },
+    FzfLuaFilePart      = { fg = p.text },
+    -- Buffer list
+    FzfLuaBufName       = { fg = p.blue },
+    FzfLuaBufId         = { fg = p.text_muted },
+    FzfLuaBufNr         = { fg = p.text_muted },
+    FzfLuaBufLineNr     = { fg = p.text_muted },
+    FzfLuaBufFlagCur    = { fg = p.brand },
+    FzfLuaBufFlagAlt    = { fg = p.blue },
+    -- Tab list
+    FzfLuaTabTitle      = { fg = p.blue, bold = true },
+    FzfLuaTabMarker     = { fg = p.brand, bold = true },
+    -- Live grep / symbols
+    FzfLuaLivePrompt    = { fg = p.brand },
+    FzfLuaLiveSym       = { fg = p.purple },
+    -- Command-mode entries
+    FzfLuaCmdEx         = { fg = p.text },
+    FzfLuaCmdBuf        = { fg = p.blue },
+    FzfLuaCmdGlobal     = { fg = p.purple },
+    -- fzf terminal color mappings (used with fzf_colors = true)
+    FzfLuaFzfNormal     = { fg = p.text, bg = p.mantle },
+    FzfLuaFzfCursorLine = { bg = p.surface0 },
+    FzfLuaFzfMatch      = { fg = p.brand, bold = true },
+    FzfLuaFzfBorder     = { fg = p.surface2 },
+    FzfLuaFzfScrollbar  = { fg = p.surface2 },
+    FzfLuaFzfSeparator  = { fg = p.surface2 },
+    FzfLuaFzfGutter     = { bg = p.mantle },
+    FzfLuaFzfHeader     = { fg = p.brand },
+    FzfLuaFzfInfo       = { fg = p.text_muted },
+    FzfLuaFzfPointer    = { fg = p.brand },
+    FzfLuaFzfMarker     = { fg = p.brand },
+    FzfLuaFzfSpinner    = { fg = p.brand },
+    FzfLuaFzfPrompt     = { fg = p.brand },
+    FzfLuaFzfQuery      = { fg = p.text },
   }
 end
 
