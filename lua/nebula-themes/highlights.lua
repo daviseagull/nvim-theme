@@ -264,211 +264,189 @@ function M.treesitter(p)
   }
 end
 
---- Generate highlight groups for popular plugins
+--- Generate highlight groups for plugins (mini.nvim + oil.nvim)
 ---@param p NebulaPalette
 ---@return table<string, vim.api.keyset.highlight>
 function M.plugins(p)
   return {
-    -- ── Telescope ────────────────────────────────────────────────────
-    TelescopeNormal       = { fg = p.text, bg = p.mantle },
-    TelescopeBorder       = { fg = p.surface2, bg = p.mantle },
-    TelescopeTitle        = { fg = p.brand, bold = true },
-    TelescopePromptNormal = { fg = p.text, bg = p.crust },
-    TelescopePromptBorder = { fg = p.surface2, bg = p.crust },
-    TelescopePromptTitle  = { fg = p.brand, bg = p.crust, bold = true },
-    TelescopePromptPrefix = { fg = p.brand },
-    TelescopeSelection    = { bg = p.surface0 },
-    TelescopeMatching     = { fg = p.brand, bold = true },
-    TelescopePreviewTitle = { fg = p.green, bold = true },
-    TelescopeResultsTitle = { fg = p.blue, bold = true },
+    -- ── oil.nvim ──────────────────────────────────────────────────────
+    OilDir                    = { fg = p.blue, bold = true },
+    OilDirIcon                = { fg = p.blue },
+    OilDirHidden              = { fg = p.text_muted },
+    OilFile                   = { fg = p.text },
+    OilFileHidden             = { fg = p.text_muted },
+    OilSocket                 = { fg = p.purple },
+    OilSocketHidden           = { fg = p.text_muted },
+    OilLink                   = { fg = p.teal },
+    OilLinkHidden             = { fg = p.text_muted },
+    OilLinkTarget             = { fg = p.text_muted },
+    OilOrphanLink             = { fg = p.red },
+    OilOrphanLinkHidden       = { fg = p.text_muted },
+    OilOrphanLinkTarget       = { fg = p.red },
+    OilOrphanLinkTargetHidden = { fg = p.text_muted },
+    OilLinkTargetHidden       = { fg = p.text_muted },
+    OilCreate                 = { fg = p.green, bold = true },
+    OilDelete                 = { fg = p.red, bold = true },
+    OilMove                   = { fg = p.yellow, bold = true },
+    OilCopy                   = { fg = p.blue, bold = true },
+    OilChange                 = { fg = p.orange, bold = true },
+    OilRestore                = { fg = p.green },
+    OilPurge                  = { fg = p.red, bold = true },
+    OilTrash                  = { fg = p.red },
+    OilTrashSourcePath        = { fg = p.text_muted },
+    OilEmpty                  = { fg = p.surface2 },
+    OilHidden                 = { fg = p.text_muted },
 
-    -- ── nvim-cmp ─────────────────────────────────────────────────────
-    CmpItemAbbr           = { fg = p.text },
-    CmpItemAbbrDeprecated = { fg = p.text_muted, strikethrough = true },
-    CmpItemAbbrMatch      = { fg = p.brand, bold = true },
-    CmpItemAbbrMatchFuzzy = { fg = p.brand, bold = true },
-    CmpItemMenu           = { fg = p.text_muted },
-    CmpItemKindDefault    = { fg = p.text_muted },
-    CmpItemKindFunction   = { fg = p.blue },
-    CmpItemKindMethod     = { fg = p.blue },
-    CmpItemKindVariable   = { fg = p.text },
-    CmpItemKindKeyword    = { fg = p.purple },
-    CmpItemKindText       = { fg = p.green },
-    CmpItemKindClass      = { fg = p.yellow },
-    CmpItemKindStruct     = { fg = p.yellow },
-    CmpItemKindModule     = { fg = p.blue },
-    CmpItemKindSnippet    = { fg = p.pink },
-    CmpItemKindField      = { fg = p.teal },
-    CmpItemKindProperty   = { fg = p.teal },
-    CmpItemKindConstant   = { fg = p.orange },
-    CmpItemKindEnum       = { fg = p.yellow },
-    CmpItemKindInterface  = { fg = p.yellow },
-    CmpItemKindFile       = { fg = p.blue },
-    CmpItemKindFolder     = { fg = p.blue },
-
-    -- ── Gitsigns ─────────────────────────────────────────────────────
-    GitSignsAdd          = { fg = p.green },
-    GitSignsChange       = { fg = p.blue },
-    GitSignsDelete       = { fg = p.red },
-    GitSignsAddNr        = { fg = p.green },
-    GitSignsChangeNr     = { fg = p.blue },
-    GitSignsDeleteNr     = { fg = p.red },
-    GitSignsAddLn        = { bg = p.green, fg = p.bg },
-    GitSignsChangeLn     = { bg = p.blue, fg = p.bg },
-    GitSignsDeleteLn     = { bg = p.red, fg = p.bg },
-
-    -- ── Indent Blankline ─────────────────────────────────────────────
-    IndentBlanklineChar        = { fg = p.surface0, nocombine = true },
-    IndentBlanklineContextChar = { fg = p.surface2, nocombine = true },
-    IblIndent                  = { fg = p.surface0, nocombine = true },
-    IblScope                   = { fg = p.surface2, nocombine = true },
-
-    -- ── nvim-tree / neo-tree ─────────────────────────────────────────
-    NvimTreeNormal       = { fg = p.text, bg = p.mantle },
-    NvimTreeFolderIcon   = { fg = p.blue },
-    NvimTreeFolderName   = { fg = p.blue },
-    NvimTreeOpenedFolderName = { fg = p.blue, bold = true },
-    NvimTreeRootFolder   = { fg = p.brand, bold = true },
-    NvimTreeGitDirty     = { fg = p.yellow },
-    NvimTreeGitNew       = { fg = p.green },
-    NvimTreeGitDeleted   = { fg = p.red },
-    NeoTreeNormal        = { fg = p.text, bg = p.mantle },
-    NeoTreeNormalNC      = { fg = p.text, bg = p.mantle },
-    NeoTreeDirectoryIcon = { fg = p.blue },
-    NeoTreeDirectoryName = { fg = p.blue },
-    NeoTreeRootName      = { fg = p.brand, bold = true },
-    NeoTreeGitAdded      = { fg = p.green },
-    NeoTreeGitModified   = { fg = p.yellow },
-    NeoTreeGitDeleted    = { fg = p.red },
-
-    -- ── Which-key ────────────────────────────────────────────────────
-    WhichKey       = { fg = p.brand },
-    WhichKeyGroup  = { fg = p.blue },
-    WhichKeyDesc   = { fg = p.text },
-    WhichKeySeparator = { fg = p.text_muted },
-    WhichKeyValue  = { fg = p.text_muted },
-
-    -- ── Lazy.nvim ────────────────────────────────────────────────────
-    LazyH1         = { fg = p.bg, bg = p.brand, bold = true },
-    LazyButton     = { fg = p.text, bg = p.surface0 },
-    LazyButtonActive = { fg = p.bg, bg = p.brand },
-    LazySpecial    = { fg = p.teal },
-    LazyProgressDone = { fg = p.brand },
-    LazyProgressTodo = { fg = p.surface1 },
-
-    -- ── Mason ────────────────────────────────────────────────────────
-    MasonNormal    = { fg = p.text, bg = p.mantle },
-    MasonHeader    = { fg = p.bg, bg = p.brand, bold = true },
-    MasonHighlight = { fg = p.brand },
-
-    -- ── Notify ───────────────────────────────────────────────────────
-    NotifyERRORBorder = { fg = p.red },
-    NotifyERRORIcon   = { fg = p.red },
-    NotifyERRORTitle  = { fg = p.red },
-    NotifyWARNBorder  = { fg = p.yellow },
-    NotifyWARNIcon    = { fg = p.yellow },
-    NotifyWARNTitle   = { fg = p.yellow },
-    NotifyINFOBorder  = { fg = p.blue },
-    NotifyINFOIcon    = { fg = p.blue },
-    NotifyINFOTitle   = { fg = p.blue },
-    NotifyDEBUGBorder = { fg = p.text_muted },
-    NotifyDEBUGIcon   = { fg = p.text_muted },
-    NotifyDEBUGTitle  = { fg = p.text_muted },
-
-    -- ── Noice ────────────────────────────────────────────────────────
-    NoiceCmdline       = { fg = p.text },
-    NoiceCmdlinePopup  = { fg = p.text, bg = p.mantle },
-    NoiceCmdlinePopupBorder = { fg = p.surface2 },
-    NoiceCmdlineIcon   = { fg = p.brand },
-
-    -- ── Mini (mini.nvim) ─────────────────────────────────────────────
-    MiniStatuslineFilename = { fg = p.text, bg = p.surface0 },
+    -- ── mini.statusline ───────────────────────────────────────────────
+    MiniStatuslineDevinfo     = { fg = p.text_muted, bg = p.surface1 },
+    MiniStatuslineFileinfo    = { fg = p.text_muted, bg = p.surface1 },
+    MiniStatuslineFilename    = { fg = p.text, bg = p.surface0 },
+    MiniStatuslineInactive    = { fg = p.blue, bg = p.mantle },
     MiniStatuslineModeNormal  = { fg = p.bg, bg = p.blue, bold = true },
     MiniStatuslineModeInsert  = { fg = p.bg, bg = p.green, bold = true },
     MiniStatuslineModeVisual  = { fg = p.bg, bg = p.purple, bold = true },
     MiniStatuslineModeReplace = { fg = p.bg, bg = p.red, bold = true },
     MiniStatuslineModeCommand = { fg = p.bg, bg = p.orange, bold = true },
-    MiniTablineCurrent  = { fg = p.text, bg = p.bg, bold = true },
-    MiniTablineVisible  = { fg = p.text_muted, bg = p.mantle },
-    MiniTablineHidden   = { fg = p.text_muted, bg = p.crust },
-    MiniTablineFill     = { bg = p.mantle },
-    MiniCursorword      = { bg = p.surface0, bold = true },
+    MiniStatuslineModeOther   = { fg = p.bg, bg = p.teal, bold = true },
+
+    -- ── mini.tabline ──────────────────────────────────────────────────
+    MiniTablineCurrent         = { fg = p.text, bg = p.bg, bold = true },
+    MiniTablineVisible         = { fg = p.text_muted, bg = p.mantle },
+    MiniTablineHidden          = { fg = p.text_muted, bg = p.crust },
+    MiniTablineFill            = { bg = p.mantle },
+    MiniTablineModifiedCurrent = { fg = p.red, bold = true },
+    MiniTablineModifiedVisible = { fg = p.red },
+    MiniTablineModifiedHidden  = { fg = p.red },
+    MiniTablineTabpagesection  = { fg = p.surface1, bg = p.bg },
+
+    -- ── mini.cursorword ───────────────────────────────────────────────
+    MiniCursorword        = { bg = p.surface0, bold = true },
+    MiniCursorwordCurrent = { underline = true },
+
+    -- ── mini.indentscope ──────────────────────────────────────────────
     MiniIndentscopeSymbol = { fg = p.surface2 },
 
-    -- ── mini.clue ────────────────────────────────────────────────────
-    MiniClueBorder               = { fg = p.surface2, bg = p.mantle },
-    MiniClueTitle                = { fg = p.brand, bg = p.mantle, bold = true },
-    MiniClueNextKey              = { fg = p.brand },
-    MiniClueNextKeyWithPostkeys  = { fg = p.orange, bold = true },
-    MiniClueDescSingle           = { fg = p.text },
-    MiniClueDescGroup            = { fg = p.blue },
-    MiniClueSeparator            = { fg = p.surface2 },
+    -- ── mini.clue ─────────────────────────────────────────────────────
+    MiniClueBorder              = { fg = p.surface2, bg = p.mantle },
+    MiniClueTitle               = { fg = p.brand, bg = p.mantle, bold = true },
+    MiniClueNextKey             = { fg = p.brand },
+    MiniClueNextKeyWithPostkeys = { fg = p.orange, bold = true },
+    MiniClueDescSingle          = { fg = p.text },
+    MiniClueDescGroup           = { fg = p.blue },
+    MiniClueSeparator           = { fg = p.surface2 },
 
-    -- ── fzf-lua ──────────────────────────────────────────────────────
-    -- Main window
-    FzfLuaNormal        = { fg = p.text, bg = p.mantle },
-    FzfLuaBorder        = { fg = p.surface2, bg = p.mantle },
-    FzfLuaTitle         = { fg = p.brand, bold = true },
-    FzfLuaTitleFlags    = { fg = p.text_muted },
-    FzfLuaBackdrop      = { bg = p.bg },
-    -- Preview window
-    FzfLuaPreviewNormal = { fg = p.text, bg = p.crust },
-    FzfLuaPreviewBorder = { fg = p.surface2, bg = p.crust },
-    FzfLuaPreviewTitle  = { fg = p.green, bold = true },
-    -- Help window
-    FzfLuaHelpNormal    = { fg = p.text, bg = p.mantle },
-    FzfLuaHelpBorder    = { fg = p.surface2, bg = p.mantle },
-    -- Cursor / selection
-    FzfLuaCursor        = { fg = p.bg, bg = p.brand },
-    FzfLuaCursorLine    = { bg = p.surface0 },
-    FzfLuaCursorLineNr  = { fg = p.text_muted, bg = p.surface0 },
-    FzfLuaSearch        = { fg = p.brand, bold = true },
-    -- Scrollbars
-    FzfLuaScrollBorderEmpty = { fg = p.surface1 },
-    FzfLuaScrollBorderFull  = { fg = p.brand },
-    FzfLuaScrollFloatEmpty  = { fg = p.surface1 },
-    FzfLuaScrollFloatFull   = { fg = p.brand },
-    -- Headers / keybind hints
-    FzfLuaHeaderBind    = { fg = p.brand },
-    FzfLuaHeaderText    = { fg = p.blue },
-    -- Path parts
-    FzfLuaPathColNr     = { fg = p.teal },
-    FzfLuaPathLineNr    = { fg = p.green },
-    FzfLuaDirIcon       = { fg = p.blue },
-    FzfLuaDirPart       = { fg = p.text_muted },
-    FzfLuaFilePart      = { fg = p.text },
-    -- Buffer list
-    FzfLuaBufName       = { fg = p.blue },
-    FzfLuaBufId         = { fg = p.text_muted },
-    FzfLuaBufNr         = { fg = p.text_muted },
-    FzfLuaBufLineNr     = { fg = p.text_muted },
-    FzfLuaBufFlagCur    = { fg = p.brand },
-    FzfLuaBufFlagAlt    = { fg = p.blue },
-    -- Tab list
-    FzfLuaTabTitle      = { fg = p.blue, bold = true },
-    FzfLuaTabMarker     = { fg = p.brand, bold = true },
-    -- Live grep / symbols
-    FzfLuaLivePrompt    = { fg = p.brand },
-    FzfLuaLiveSym       = { fg = p.purple },
-    -- Command-mode entries
-    FzfLuaCmdEx         = { fg = p.text },
-    FzfLuaCmdBuf        = { fg = p.blue },
-    FzfLuaCmdGlobal     = { fg = p.purple },
-    -- fzf terminal color mappings (used with fzf_colors = true)
-    FzfLuaFzfNormal     = { fg = p.text, bg = p.mantle },
-    FzfLuaFzfCursorLine = { bg = p.surface0 },
-    FzfLuaFzfMatch      = { fg = p.brand, bold = true },
-    FzfLuaFzfBorder     = { fg = p.surface2 },
-    FzfLuaFzfScrollbar  = { fg = p.surface2 },
-    FzfLuaFzfSeparator  = { fg = p.surface2 },
-    FzfLuaFzfGutter     = { bg = p.mantle },
-    FzfLuaFzfHeader     = { fg = p.brand },
-    FzfLuaFzfInfo       = { fg = p.text_muted },
-    FzfLuaFzfPointer    = { fg = p.brand },
-    FzfLuaFzfMarker     = { fg = p.brand },
-    FzfLuaFzfSpinner    = { fg = p.brand },
-    FzfLuaFzfPrompt     = { fg = p.brand },
-    FzfLuaFzfQuery      = { fg = p.text },
+    -- ── mini.pick ─────────────────────────────────────────────────────
+    MiniPickBorder        = { link = "FloatBorder" },
+    MiniPickBorderBusy    = { link = "DiagnosticWarn" },
+    MiniPickBorderText    = { fg = p.brand, bg = p.mantle, bold = true },
+    MiniPickIconDirectory = { link = "Directory" },
+    MiniPickIconFile      = { link = "NormalFloat" },
+    MiniPickHeader        = { fg = p.teal },
+    MiniPickMatchCurrent  = { fg = p.brand, bg = p.surface0, bold = true },
+    MiniPickMatchMarked   = { link = "Visual" },
+    MiniPickMatchRanges   = { fg = p.teal },
+    MiniPickNormal        = { link = "NormalFloat" },
+    MiniPickPreviewLine   = { link = "CursorLine" },
+    MiniPickPreviewRegion = { link = "IncSearch" },
+    MiniPickPrompt        = { fg = p.text, bg = p.mantle },
+
+    -- ── mini.diff ─────────────────────────────────────────────────────
+    MiniDiffSignAdd     = { fg = p.green },
+    MiniDiffSignChange  = { fg = p.yellow },
+    MiniDiffSignDelete  = { fg = p.red },
+    MiniDiffOverAdd     = { link = "DiffAdd" },
+    MiniDiffOverChange  = { link = "DiffText" },
+    MiniDiffOverContext = { link = "DiffChange" },
+    MiniDiffOverDelete  = { link = "DiffDelete" },
+
+    -- ── mini.surround ─────────────────────────────────────────────────
+    MiniSurround = { bg = p.pink, fg = p.surface1 },
+
+    -- ── mini.files ────────────────────────────────────────────────────
+    MiniFilesBorder         = { link = "FloatBorder" },
+    MiniFilesBorderModified = { link = "DiagnosticWarn" },
+    MiniFilesCursorLine     = { link = "CursorLine" },
+    MiniFilesDirectory      = { link = "Directory" },
+    MiniFilesFile           = { fg = p.text },
+    MiniFilesNormal         = { link = "NormalFloat" },
+    MiniFilesTitle          = { link = "FloatTitle" },
+    MiniFilesTitleFocused   = { fg = p.brand, bg = p.mantle, bold = true },
+
+    -- ── mini.icons ────────────────────────────────────────────────────
+    MiniIconsAzure  = { fg = p.blue },
+    MiniIconsBlue   = { fg = p.blue },
+    MiniIconsCyan   = { fg = p.teal },
+    MiniIconsGreen  = { fg = p.green },
+    MiniIconsGrey   = { fg = p.text },
+    MiniIconsOrange = { fg = p.orange },
+    MiniIconsPurple = { fg = p.purple },
+    MiniIconsRed    = { fg = p.red },
+    MiniIconsYellow = { fg = p.yellow },
+
+    -- ── mini.hipatterns ───────────────────────────────────────────────
+    MiniHipatternsFixme = { fg = p.bg, bg = p.red, bold = true },
+    MiniHipatternsHack  = { fg = p.bg, bg = p.yellow, bold = true },
+    MiniHipatternsNote  = { fg = p.bg, bg = p.blue, bold = true },
+    MiniHipatternsTodo  = { fg = p.bg, bg = p.teal, bold = true },
+
+    -- ── mini.notify ───────────────────────────────────────────────────
+    MiniNotifyBorder = { link = "FloatBorder" },
+    MiniNotifyNormal = { link = "NormalFloat" },
+    MiniNotifyTitle  = { link = "FloatTitle" },
+
+    -- ── mini.deps ─────────────────────────────────────────────────────
+    MiniDepsChangeAdded   = { link = "diffAdded" },
+    MiniDepsChangeRemoved = { link = "diffRemoved" },
+    MiniDepsHint          = { link = "DiagnosticHint" },
+    MiniDepsInfo          = { link = "DiagnosticInfo" },
+    MiniDepsMsgBreaking   = { link = "DiagnosticWarn" },
+    MiniDepsPlaceholder   = { link = "Comment" },
+    MiniDepsTitle         = { link = "Title" },
+    MiniDepsTitleError    = { bg = p.red, fg = p.bg },
+    MiniDepsTitleSame     = { link = "DiffText" },
+    MiniDepsTitleUpdate   = { bg = p.green, fg = p.bg },
+
+    -- ── mini.jump ─────────────────────────────────────────────────────
+    MiniJump             = { fg = p.surface2, bg = p.pink },
+    MiniJump2dDim        = { fg = p.surface2 },
+    MiniJump2dSpot       = { bg = p.bg, fg = p.orange, bold = true, underline = true },
+    MiniJump2dSpotAhead  = { fg = p.teal },
+    MiniJump2dSpotUnique = { bg = p.bg, fg = p.blue, bold = true },
+
+    -- ── mini.starter ──────────────────────────────────────────────────
+    MiniStarterCurrent    = {},
+    MiniStarterFooter     = { fg = p.yellow },
+    MiniStarterHeader     = { fg = p.blue },
+    MiniStarterInactive   = { fg = p.surface2 },
+    MiniStarterItem       = { fg = p.text },
+    MiniStarterItemBullet = { fg = p.blue },
+    MiniStarterItemPrefix = { fg = p.pink },
+    MiniStarterSection    = { fg = p.brand },
+    MiniStarterQuery      = { fg = p.green },
+
+    -- ── mini.map ──────────────────────────────────────────────────────
+    MiniMapNormal      = { link = "NormalFloat" },
+    MiniMapSymbolCount = { link = "Special" },
+    MiniMapSymbolLine  = { link = "Title" },
+    MiniMapSymbolView  = { link = "Delimiter" },
+
+    -- ── mini.animate ──────────────────────────────────────────────────
+    MiniAnimateCursor      = { reverse = true, nocombine = true },
+    MiniAnimateNormalFloat = { link = "NormalFloat" },
+
+    -- ── mini.completion ───────────────────────────────────────────────
+    MiniCompletionActiveParameter = { underline = true },
+
+    -- ── mini.operators ────────────────────────────────────────────────
+    MiniOperatorsExchangeFrom = { link = "IncSearch" },
+
+    -- ── mini.test ─────────────────────────────────────────────────────
+    MiniTestEmphasis = { bold = true },
+    MiniTestFail     = { fg = p.red, bold = true },
+    MiniTestPass     = { fg = p.green, bold = true },
+
+    -- ── mini.trailspace ───────────────────────────────────────────────
+    MiniTrailspace = { bg = p.red },
   }
 end
 
